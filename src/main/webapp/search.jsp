@@ -1,13 +1,13 @@
 <html>
-<jsp:useBean id="term" class="servlet.Search"/>
-<h1>GET</h1>
+<head>
+    <title>Dizionario Java Bean</title>
+</head>
 <body>
-    <br>
-    <jsp:setProperty name="term" property="termine" param="termine" />
-    <jsp:getProperty name="term" property="risultato" />
-    <br>
-
+<h1>Ricerca</h1>
+    <jsp:useBean id="newCostruttore" class="servlet.Search" />
+    <jsp:setProperty name="newCostruttore" property="search" param="ricerca" />
+    <jsp:getProperty name="newCostruttore" property="search" />
+    <br><br>
     <a href="index.html">Torna alla Home</a>
-
 </body>
 </html>

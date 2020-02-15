@@ -1,43 +1,48 @@
 package servlet;
 
+import org.apache.catalina.filters.ExpiresFilter;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
-public class Search{
+public class Search implements java.io.Serializable{
+    private static final long serialVersionUID = 1L;
 
+    private String ricerca;
     private String termine;
     private String sinonimo;
     private String contrario;
-    private String risultato;
+    private ArrayList<String> parola = new ArrayList<String> ();
 
-    Search(){
+    public Search(){
 
     }
 
-    public String getRisultato() {
+    public String getSearch() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("");
+            Connection con = DriverManager.getConnection("jdbc:mysql://eu-cdbr-west-02.cleardb.net/heroku_36d91ccb9e97f8f?user=bf4762acadbdf4&password=48baa9aa");
             Statement stmt = con.createStatement();
-            ResultSet response = stmt.executeQuery("SELECT termine, sinonimo, contrario FROM dizionario WHERE termine='" + termine + "'");
+            ResultSet response = stmt.executeQuery("SELECT * FROM dizionario WHERE termine='" + this.ricerca + "'");
 
-            termine= response.getString("termine");
-            sinonimo= response.getString("sinonimo");
-            contrario= response.getString("contrario");
+            while (response.next()){
+                this.termine =response.getString("termine");
+                this.sinonimo =response.getString("sinonimo");
+                this.contrario =response.getString("contrario");
+            }
 
-            risultato = "termine:"+termine+", sinonimo:"+sinonimo+", contrario"+contrario;
-
-            return risultato;
-
+            return toString();
         } catch (Exception e) {
-            return "errore";
+            return "Termine non trovato";
         }
+
     }
 
-    public String getTermine() {
-        return termine;
+    public void setSearch(String ricerca) {
+        this.ricerca = ricerca;
     }
 
     public void setTermine(String termine) {
@@ -60,4 +65,8 @@ public class Search{
         this.contrario = contrario;
     }
 
+
+    public String toString() {
+        return "Termine:"+this.termine+"<br>Sinonimo:"+this.sinonimo+"<br>Contrario:"+this.contrario;
+    }
 }
