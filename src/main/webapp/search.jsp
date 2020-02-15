@@ -1,9 +1,9 @@
 <html>
 <head>
-    <title>Dizionario Java Bean</title>
+    <title>Ricerca</title>
 </head>
 <body>
-<h1>Ricerca</h1>
+<h1>Ricerca:</h1>
     <jsp:useBean id="newCostruttore" class="servlet.Search" />
     <jsp:setProperty name="newCostruttore" property="search" param="ricerca" />
     <jsp:getProperty name="newCostruttore" property="search" />

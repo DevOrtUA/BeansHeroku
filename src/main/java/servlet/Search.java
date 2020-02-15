@@ -4,12 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ArrayList;
 
-public class Search { ;
+public class Search {
 
     private String ricerca;
-
     private String termine;
     private String sinonimo;
     private String contrario;
@@ -30,10 +28,13 @@ public class Search { ;
                 this.sinonimo =response.getString("sinonimo");
                 this.contrario =response.getString("contrario");
             }
-
-            return toString();
+            if (termine == null){
+                return "Termine non trovato";
+            }else {
+                return toString();
+            }
         } catch (Exception e) {
-            return "Termine non trovato";
+            return "Internal error";
         }
 
     }
