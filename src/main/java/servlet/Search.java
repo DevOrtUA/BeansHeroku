@@ -7,7 +7,6 @@ import java.sql.Statement;
 
 public class Search {
 
-    private String ricerca;
     private String termine;
     private String sinonimo;
     private String contrario;
@@ -16,19 +15,19 @@ public class Search {
 
     }
 
-    public String getSearch() {
+    public String getTermine() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://eu-cdbr-west-02.cleardb.net/heroku_36d91ccb9e97f8f?user=bf4762acadbdf4&password=48baa9aa");
             Statement stmt = con.createStatement();
-            ResultSet response = stmt.executeQuery("SELECT * FROM dizionario WHERE termine='" + this.ricerca + "'");
+            ResultSet response = stmt.executeQuery("SELECT * FROM dizionario WHERE termine='" + this.termine + "'");
 
             while (response.next()){
                 this.termine =response.getString("termine");
                 this.sinonimo =response.getString("sinonimo");
                 this.contrario =response.getString("contrario");
             }
-            if (termine == null){
+            if (sinonimo == null && contrario == null){
                 return "Termine non trovato";
             }else {
                 return toString();
@@ -39,8 +38,8 @@ public class Search {
 
     }
 
-    public void setSearch(String ricerca) {
-        this.ricerca = ricerca;
+    public void setTermine(String termine) {
+        this.termine = termine;
     }
 
     public String toString() {
