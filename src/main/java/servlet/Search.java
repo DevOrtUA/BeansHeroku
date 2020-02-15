@@ -1,21 +1,18 @@
 package servlet;
 
-import org.apache.catalina.filters.ExpiresFilter;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class Search implements java.io.Serializable{
-    private static final long serialVersionUID = 1L;
+public class Search { ;
 
     private String ricerca;
+
     private String termine;
     private String sinonimo;
     private String contrario;
-    private ArrayList<String> parola = new ArrayList<String> ();
 
     public Search(){
 
@@ -44,27 +41,6 @@ public class Search implements java.io.Serializable{
     public void setSearch(String ricerca) {
         this.ricerca = ricerca;
     }
-
-    public void setTermine(String termine) {
-        this.termine = termine;
-    }
-
-    public String getSinonimo() {
-        return sinonimo;
-    }
-
-    public void setSinonimo(String sinonimo) {
-        this.sinonimo = sinonimo;
-    }
-
-    public String getContrario() {
-        return contrario;
-    }
-
-    public void setContrario(String contrario) {
-        this.contrario = contrario;
-    }
-
 
     public String toString() {
         return "Termine:"+this.termine+"<br>Sinonimo:"+this.sinonimo+"<br>Contrario:"+this.contrario;
