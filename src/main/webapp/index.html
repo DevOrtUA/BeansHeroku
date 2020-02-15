@@ -5,11 +5,8 @@
     <title>Dizionario</title>
 </head>
 <body>
-
 <html>
-
     <h1>Dizionario BeansJSP</h1>
-
     <h3>Metodo Get</h3>
     <form action="search.jsp">
         <input type="text" name=ricerca required><br>
@@ -23,7 +20,19 @@
         Contrario:<br><input type="text" name=contrario required><br>
         <input type="submit">
     </form>
-
-
+    <br><br>
+    <h3>Metodo Delete</h3>
+    <form action="delete.jsp">
+        Termine:<br><input type="text" name=termine required><br>
+        <input type="submit">
+    </form>
+    <br><br>
+    <h3>Metodo Update</h3>
+    <form action="update.jsp">
+        Termine:<br><input type="text" name=termine required><br>
+        Sinonimo:<br><input type="text" name=sinonimo required><br>
+        Contrario:<br><input type="text" name=contrario required><br>
+        <input type="submit">
+    </form>
 </body>
 </html>
